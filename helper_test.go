@@ -20,9 +20,8 @@ func TestHelpers(t *testing.T) {
 	})
 	t.Run("NotEqual", func(t *testing.T) {
 		NotEqual(t, "foo", "bar")
-		NotEqual(t, []string{"fo", "br", "lan"}, []string{"foo", "bar", "lan"})
+		NotEqual(t, []string{"food", "br", "lan"}, []string{"foo", "bar", "lan"})
 	})
-
 	t.Run("DurationLog", func(t *testing.T) {
 		start := time.Now()
 		defer DurationLog(start, "foo")

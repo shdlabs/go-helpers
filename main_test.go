@@ -15,7 +15,7 @@ func TestAll(t *testing.T) {
 	engine := &script.Engine{
 		Conds: scripttest.DefaultConds(),
 		Cmds:  scripttest.DefaultCmds(),
-		Quiet: false,
+		Quiet: true,
 	}
 
 	env := os.Environ()
