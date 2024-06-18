@@ -1,0 +1,8 @@
+exec cat lam.txt
+stdout 'same shit'
+
+exec cat lam.txt
+! stdout 'shit as it was'
+
+-- lam.txt --
+same shit

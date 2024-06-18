@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - task: go:test
+    silent: true
+
+  go:test:
+    cmds:
+      - gotest ./...
+
+  go:test:table:
+    cmds:
+      - set -o pipefail && go test -cover  ./... -json | tparse
+
+  go:tscript:
+    cmds:
+      - testscript test.txtar
