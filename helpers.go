@@ -2,7 +2,6 @@ package helpers
 
 import (
 	"fmt"
-	"reflect"
 	"strings"
 	"testing"
 	"time"
@@ -29,10 +28,6 @@ const (
 	OH = "😯" // WARNING
 	AH = "🤨" // DEBUG or TODO
 )
-
-func New(t *testing.T) {
-	t.Helper()
-}
 
 func concat(parts ...string) string {
 	return strings.Join(parts, " ")
@@ -111,11 +106,12 @@ func Equal(t *testing.T, actual, expected any) {
 }
 
 // NotEqual fails the test if equal (DeepEqual).
-func NotEqual[T comparable](t *testing.T, actual, expected T) {
+func NotEqual(t *testing.T, actual, expected any) {
 	t.Helper()
 
-	if reflect.DeepEqual(actual, expected) {
-		t.Errorf(Ko("Equal => \nEXP: %#v\nGOT: %#v"), expected, actual)
+	r := DiffReporter{}
+	if cmp.Equal(actual, expected, cmp.Reporter(&r)) {
+		t.Error(r.String())
 	}
 }
 
